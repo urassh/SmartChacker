@@ -23,8 +23,8 @@ void loop() {
   button = digitalRead(13);
   Serial.print("count:");
   Serial.println(count);
-  buttonFlag();
-  password(count ,passwordNumber);
+  flag = buttonFlag();
+  passwordAttention = password(count ,passwordNumber);
 
   iilum.convertVolt();
   iilum.convertResistance();
@@ -39,18 +39,17 @@ void loop() {
 void buttonFlag() {
   if(flag == 0 && button == 1){
     count++;
-    flag = 1;
- } else if (flag == 1 && button == 0){
-   flag = 0;
- }
-
+    return 1;
+  } else if (flag == 1 && button == 0){
+    return 0;
+  }
 }
 
 void password(int input, int password) {
   if(input == password) {
-    passwordAttention = true;
+    return true;
   } else {
-    passwordAttention = false;
+    return false;
   }
 }
 
@@ -68,7 +67,7 @@ void illuminationHandler (float illuminance, float criterion, bool flag) {
      music.dragonQuest();
      done = true;
      passwordAttention = false;
-     count=0;
+     count = 0;
    }
 }
 
