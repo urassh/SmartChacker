@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "ConversionIllum.h"
+#include "../Class/ConversionIllum.h"
 
 ConversionIllum::ConversionIllum(int pin) {
   pinNumber = pin;

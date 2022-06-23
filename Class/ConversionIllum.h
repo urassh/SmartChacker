@@ -9,7 +9,6 @@ class ConversionIllum {
     float volt;
   private:
     const float fixed = 10000.0;
-    
     float resistance;
     int pinNumber;
     int value;

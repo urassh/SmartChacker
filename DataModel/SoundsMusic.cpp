@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "SoundsMusic.h"
+#include "../Class/SoundsMusic.h"
 
 SoundsMusic::SoundsMusic(int pin) {
   pinNumber = pin;

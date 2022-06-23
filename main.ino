@@ -1,9 +1,12 @@
-#include "SoundsMusic.h"
-#include "ConversionIllum.h"
-#include "ConversionTemperature.h"
+#include "./Class/SoundsMusic.h"
+#include "./Class/ConversionIllum.h"
+#include "./Class/MeasureTime.h"
+
+// Remove at conversionTemprature.h
+// Remove at conversionTemprature.cpp
+// Create at MeasureTime.cpp
 
 float darknessCriterion = 0.05;
-float temperatureCritarion = 28.0;
 bool passwordAttention = false;
 int passwordNumber = 5;
 int button = 0;
@@ -11,36 +14,30 @@ int count = 0;
 int flag = 0;
 bool done = false;
 
-SoundsMusic music = SoundsMusic(7);
 ConversionIllum iilum = ConversionIllum(0);
-ConversionTemperature temp = ConversionTemperature(1);
+SoundsMusic music = SoundsMusic(7);
 
 void setup() {
   Serial.begin(9600);
-  pinMode(A0, INPUT);//
+  pinMode(A0, INPUT);
   pinMode(13, INPUT);
 }
 
 void loop() {
-   button = digitalRead(13);
-   Serial.print("count:");
-   Serial.println(count);
-   buttonFlag();
-   password(count ,passwordNumber);
+  button = digitalRead(13);
+  Serial.print("count:");
+  Serial.println(count);
+  buttonFlag();
+  password(count ,passwordNumber);
 
-   iilum.convertVolt();
-   iilum.convertResistance();
-   iilum.convertIlluminance();
+  iilum.convertVolt();
+  iilum.convertResistance();
+  iilum.convertIlluminance();
 //   iilum.illumPrint();
 
-   temp.convertVolt();
-   temp.convertTemp();
-//   temp.tempPrint();
-
-   illuminationHandler(iilum.volt, darknessCriterion, passwordAttention);
-   temperatureHandler(temp.temperature, temperatureCritarion);
-
+  illuminationHandler(iilum.volt, darknessCriterion, passwordAttention);
 //   Serial.println("-------------------------------------------");
+
 }
 
 void buttonFlag() {
@@ -79,13 +76,3 @@ void illuminationHandler (float illuminance, float criterion, bool flag) {
    }
 }
 
-void temperatureHandler (float temperature, float criterion) {
-  if (temperature < criterion) {
-    Serial.println("LOW temperature");
-    
-  } else {
-    Serial.print("HIGH temperature : ");
-    Serial.println(temperature);
-//    music.falseBuzzer();
-  }
-}
