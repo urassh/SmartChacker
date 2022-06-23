@@ -2,10 +2,6 @@
 #include "./Class/ConversionIllum.h"
 #include "./Class/MeasureTime.h"
 
-// Remove at conversionTemprature.h
-// Remove at conversionTemprature.cpp
-// Create at MeasureTime.cpp
-
 float darknessCriterion = 0.05;
 bool passwordAttention = false;
 int passwordNumber = 5;
