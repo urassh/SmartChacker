@@ -1,6 +1,7 @@
 #include "./Class/SoundsMusic.h"
 #include "./Class/ConversionIllum.h"
 #include "./Class/MeasureTime.h"
+#include "./Class/Security.h"
 
 float darknessCriterion = 0.05;
 bool passwordAttention = false;
@@ -12,6 +13,7 @@ bool done = false;
 
 ConversionIllum iilum = ConversionIllum(0);
 SoundsMusic music = SoundsMusic(7);
+Security security = Security(count);
 
 void setup() {
   Serial.begin(9600);
@@ -21,10 +23,12 @@ void setup() {
 
 void loop() {
   button = digitalRead(13);
+  count = security.count;
+
   Serial.print("count:");
   Serial.println(count);
-  flag = buttonFlag();
-  passwordAttention = password(count ,passwordNumber);
+  flag = security.buttonFlag(flag, button);
+  passwordAttention = security.password(count ,passwordNumber);
 
   iilum.convertVolt();
   iilum.convertResistance();
@@ -34,23 +38,6 @@ void loop() {
   illuminationHandler(iilum.volt, darknessCriterion, passwordAttention);
 //   Serial.println("-------------------------------------------");
 
-}
-
-void buttonFlag() {
-  if(flag == 0 && button == 1){
-    count++;
-    return 1;
-  } else if (flag == 1 && button == 0){
-    return 0;
-  }
-}
-
-void password(int input, int password) {
-  if(input == password) {
-    return true;
-  } else {
-    return false;
-  }
 }
 
 void illuminationHandler (float illuminance, float criterion, bool flag) {
