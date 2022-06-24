@@ -13,20 +13,18 @@ MeasureTime::MeasureTime(int pin, int target, int time) {
 void MeasureTime::complete(void) {
     SoundsMusic music = SoundsMusic(7);
     if (targetTime == spendTime) {
-        ring = true;
         Serial.println("時間切れです。");
         Serial.println("お疲れ様でした。");
-        if (ring == true) {
-            music.dragonQuest();
-            ring = false;
-        }
-        
-    } else {
+        music.dragonQuest();
+    } else if (spendTime >= 0) {
         spendTime -= 1;
         Serial.print("経過時間は : ");
         Serial.print(spendTime);
         Serial.println("です。");
-        
+        delay(1000);
+    } else {
+        Serial.print("休憩時間は10分とります。");
+        spendTime = 600;
     }
     delay(1000);
 }
