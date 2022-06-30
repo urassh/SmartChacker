@@ -1,7 +1,7 @@
-#include "./Class/SoundsMusic.h"
-#include "./Class/ConversionIllum.h"
-#include "./Class/MeasureTime.h"
-#include "./Class/Security.h"
+#include "../Class/SoundsMusic.h"
+#include "../Class/ConversionIllum.h"
+#include "../Class/MeasureTime.h"
+#include "../Class/Security.h"
 
 float darknessCriterion = 0.05;
 bool passwordAttention = false;
@@ -57,4 +57,3 @@ void illuminationHandler (float illuminance, float criterion, bool flag) {
      count = 0;
    }
 }
-

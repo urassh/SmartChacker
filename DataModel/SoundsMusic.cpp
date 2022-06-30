@@ -107,6 +107,5 @@ void SoundsMusic::falseBuzzer(void) {
   delay(100);
   tone(pinNumber,do3,100);
   delay(100);
-  tone(pinNumber,do3,1000);
-  
+  tone(pinNumber,do3,1000); 
 }
